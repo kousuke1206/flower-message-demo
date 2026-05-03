@@ -12,21 +12,29 @@ body{
   font-family:'Noto Sans JP',sans-serif;
   background:#f3faf6;
   color:#333;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
+
+/* ===== 共通幅 ===== */
+.section, header, footer{
+  width:100%;
+  max-width:640px;
 }
 
 /* ===== ヘッダー ===== */
 header{
-  max-width:640px;
-  margin:0 auto;
-  padding:30px 20px 20px;
-  text-align:center;
   background:#fff;
+  text-align:center;
+  padding:30px 20px;
+  box-shadow:0 2px 10px rgba(0,0,0,0.05);
 }
 
 .logo{
   font-family:'Noto Serif JP',serif;
   font-size:28px;
-  letter-spacing:0.15em;
+  letter-spacing:2px;
 }
 
 .logo-sub{
@@ -34,71 +42,48 @@ header{
   color:#888;
 }
 
-.header-line{
-  width:40px;
-  height:2px;
-  margin:15px auto 0;
-  background:linear-gradient(90deg,#f8c8dc,#f6e7a1);
-}
-
 /* ===== セクション ===== */
 .section{
-  max-width:640px;
-  margin:15px auto;
-  padding:50px 20px;
+  padding:40px 20px;
   background:#fff;
+  margin-top:15px;
   box-shadow:0 2px 10px rgba(0,0,0,0.03);
 }
 
 h2{
-  font-family:'Noto Serif JP',serif;
-  margin-bottom:25px;
+  font-family:'Noto Serif JP';
+  margin-bottom:20px;
   color:#2e5f4f;
 }
 
 /* ===== カード ===== */
-.menu-top{
-  display:flex;
-  flex-direction:column;
-  gap:20px;
-}
-
 .card{
   display:flex;
   gap:15px;
   background:#f6fbf8;
-  border:1px solid #e3f0e8;
   padding:15px;
-  border-radius:12px;
+  border-radius:10px;
+  margin-bottom:10px;
 }
 
 .card img{
   width:100px;
   height:80px;
   object-fit:cover;
-  border-radius:10px;
-}
-
-.card h3{margin:0}
-.card p{margin:5px 0 0;color:#666;font-size:13px}
-
-/* ===== 一覧 ===== */
-.menu-list{
-  margin-top:25px;
-  line-height:2;
-  color:#555;
+  border-radius:8px;
+  cursor:pointer;
 }
 
 /* ===== ギャラリー ===== */
 .grid{
   display:grid;
   grid-template-columns:1fr 1fr;
-  gap:12px;
+  gap:10px;
 }
 
 .grid img{
   width:100%;
-  border-radius:12px;
+  border-radius:10px;
   cursor:pointer;
 }
 
@@ -122,17 +107,37 @@ h2{
 iframe{
   width:100%;
   height:300px;
-  border-radius:12px;
-  border:1px solid #e3f0e8;
+  border-radius:10px;
   margin-top:10px;
+}
+
+/* ===== 求人 ===== */
+.job{
+  background:#f6fbf8;
+  padding:15px;
+  border-radius:10px;
+  line-height:2;
+}
+
+/* ===== 電話 ===== */
+.tel-btn{
+  display:block;
+  text-align:center;
+  background:#88c9a1;
+  padding:15px;
+  margin-top:20px;
+  border-radius:10px;
+  color:#fff;
+  text-decoration:none;
+  font-weight:bold;
 }
 
 /* ===== フッター ===== */
 footer{
   text-align:center;
+  padding:30px;
   font-size:12px;
   color:#777;
-  padding:30px;
 }
 </style>
 </head>
@@ -140,52 +145,32 @@ footer{
 <body>
 
 <header>
-  <div class="logo">Message</div>
-  <div class="logo-sub">Flower Studio</div>
-  <div class="header-line"></div>
+<div class="logo">Message</div>
+<div class="logo-sub">フラワースタジオ</div>
 </header>
 
+<!-- 人気商品 -->
 <section class="section">
 <h2>人気商品</h2>
 
-<div class="menu-top">
-
 <div class="card">
-<img src="https://picsum.photos/200/150?flower">
-<div>
-<h3>季節のブーケ</h3>
-<p>旬の花を使った華やかな一束</p>
-</div>
+<img src="https://picsum.photos/200/150?flower" onclick="openModal(this)">
+<div>季節のブーケ</div>
 </div>
 
 <div class="card">
-<img src="https://picsum.photos/200/150?rose">
-<div>
-<h3>バラのアレンジメント</h3>
-<p>贈り物に人気の定番商品</p>
-</div>
+<img src="https://picsum.photos/200/150?rose" onclick="openModal(this)">
+<div>バラのアレンジメント</div>
 </div>
 
 <div class="card">
-<img src="https://picsum.photos/200/150?plant">
-<div>
-<h3>観葉植物ギフト</h3>
-<p>長く楽しめるグリーンギフト</p>
-</div>
-</div>
-
-</div>
-
-<div class="menu-list">
-・プリザーブドフラワー<br>
-・スタンド花<br>
-・開店祝いアレンジ<br>
-・ウェディング装花<br>
-・ラッピングサービス
+<img src="https://picsum.photos/200/150?plant" onclick="openModal(this)">
+<div>観葉植物ギフト</div>
 </div>
 
 </section>
 
+<!-- ギャラリー -->
 <section class="section">
 <h2>作品・店内</h2>
 
@@ -198,16 +183,35 @@ footer{
 
 </section>
 
+<!-- 店舗情報 -->
 <section class="section">
-<h2>アクセス</h2>
+<h2>店舗情報</h2>
 
 <iframe src="https://www.google.com/maps?q=花屋&output=embed"></iframe>
 
 <p>営業時間：10:00〜19:00</p>
 <p>定休日：火曜</p>
 
+<a href="tel:09012345678" class="tel-btn">📞 店舗に電話する</a>
+
 </section>
 
+<!-- 求人 -->
+<section class="section">
+<h2>アルバイト募集</h2>
+
+<div class="job">
+<p>時給：1,100円〜</p>
+<p>時間：10:00〜19:00</p>
+<p>未経験歓迎</p>
+<p>花が好きな方歓迎</p>
+</div>
+
+<a href="tel:09012345678" class="tel-btn">📞 応募する</a>
+
+</section>
+
+<!-- モーダル -->
 <div id="modal" class="modal" onclick="closeModal()">
 <img id="modalImg">
 </div>
